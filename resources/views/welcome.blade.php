@@ -50,6 +50,12 @@
                 </h1>
             </div>
 
+            <!-- Floating notifications -->
+          <div x-data="{ show: false, message: '' }" x-on:cart-updated.window="message = $event.detail; show = true; setTimeout(() => show = false, 3000)" x-show="show"
+            class="fixed bottom-4 left-1/2 -translate-x-1/2 bg-black text-white px-6 py-3 rounded-lg shadow-lg z-50"
+          >
+            <span x-text="message"></span>
+        </div>
             @livewire('products-list')
         </div>
 

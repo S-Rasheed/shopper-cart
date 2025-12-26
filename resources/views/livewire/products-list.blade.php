@@ -42,11 +42,9 @@
                 </div>
             </div>
 
-            <div class="mt-auto">
-                <a class="py-2 px-3 w-full inline-flex justify-center items-center gap-x-2 text-sm font-medium text-nowrap rounded-xl border border-transparent bg-yellow-400 text-black hover:bg-yellow-500 focus:outline-hidden focus:bg-yellow-500 transition disabled:opacity-50 disabled:pointer-events-none" href="#">
+            <button wire:click="addToCart({{ $product->id }})" class="mt-auto py-2 px-3 w-full inline-flex justify-center items-center gap-x-2 text-sm font-medium text-nowrap rounded-xl border border-transparent bg-yellow-400 text-black hover:bg-yellow-500 focus:outline-hidden focus:bg-yellow-500 transition disabled:opacity-50 disabled:pointer-events-none" href="#">
                 Add to Cart
-                </a>
-            </div>
+            </button>
         </div>
     @endforeach
 </div>
