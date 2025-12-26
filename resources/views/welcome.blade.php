@@ -49,6 +49,8 @@
                 End the year in Style & Sizzle
                 </h1>
             </div>
+
+            @livewire('products-list')
         </div>
 
         <!-- Testimonials -->
