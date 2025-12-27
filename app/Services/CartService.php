@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class CartService{
 
-        /**
+    /**
      * Get user's cart items with products
-     */
+    */
     public function getCartItems(User $user)
     {
         return CartItem::with('product')

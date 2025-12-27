@@ -1,4 +1,5 @@
- <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
     <!-- Cart Items Section -->
     <div class="lg:col-span-2 space-y-4">
         @if($cartItems->isEmpty())
@@ -10,7 +11,7 @@
             </div>
         @else
             @foreach($cartItems as $item)
-                <div class="bg-white rounded-lg p-6 shadow-sm">
+                <div wire:key="cart-item-{{ $item->id }}-{{ $item->quantity }}" class="bg-white rounded-lg p-6 shadow-sm">
                     <div class="flex gap-6">
 
                         <!-- Product Image-->
@@ -43,6 +44,21 @@
                                     </svg>
                                     <span wire:loading.remove wire:target="removeItem.{{ $item->id }}">Remove</span>
 <span wire:loading wire:target="removeItem.{{ $item->id }}">Removing...</span>
+                                </button>
+                                <button
+                                    wire:click="checkOutItem({{ $item->id }}, {{ $item->quantity }})"
+                                    class="text-green-900 hover:text-green-900 flex items-center gap-1 text-sm"
+                                    wire:loading.attr="disabled"
+                                    wire:target="checkOutItem({{ $item->id }}, {{ $item->quantity }})">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <rect x="2" y="5" width="20" height="14" rx="2" ry="2"
+                                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                        <line x1="2" y1="10" x2="22" y2="10"
+                                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                    </svg>
+
+                                    <span wire:loading.remove wire:target="checkOutItem({{ $item->id }}, {{ $item->quantity }})">Checkout this item</span>
+                                    <span wire:loading wire:target="checkOutItem({{ $item->id }}, {{ $item->quantity }})">Checking out...</span>
                                 </button>
                             </div>
 
@@ -115,19 +131,19 @@
                 <!-- Savings -->
                 <div class="flex justify-between text-green-600">
                     <span>Savings</span>
-                    <span>$100.00</span>
+                    <span>${{ $savings}}</span>
                 </div>
 
                 <!-- Store Pickup -->
                 <div class="flex justify-between text-gray-600">
                     <span>Store Pickup</span>
-                    <span>$99</span>
+                    <span>${{ $store_pickup}}</span>
                 </div>
 
                 <!-- Tax -->
                 <div class="flex justify-between text-gray-600">
                     <span>Tax</span>
-                    <span>$600</span>
+                    <span>${{ $tax}}</span>
                 </div>
             </div>
 
@@ -141,7 +157,7 @@
 
             <!-- Checkout Button -->
             <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg mb-4 transition">
-                Proceed to Checkout
+                Proceed to Bulk Checkout
             </button>
 
             <!-- Continue Shopping Link -->
