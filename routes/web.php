@@ -4,14 +4,15 @@ use Livewire\Volt\Volt;
 use Laravel\Fortify\Features;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::get('dashboard', [DashboardController::class, 'dashboard'])
+->middleware(['auth', 'verified'])
+->name('dashboard');
 
 Route::get('my-cart', [CartController::class, 'index'])
 ->middleware(['auth', 'verified'])
