@@ -30,7 +30,8 @@ class SendLowStockEmail implements ShouldQueue
     {
         try {
 
-            $email = "ksrasheed22@gmail.com";
+            #retrieve admin email
+            $email = config('mail.admin_email', env('ADMIN_EMAIL', 'ksrasheed22@gmail.com'));
 
             Mail::to($email)->send(new LowStockMail($this->product));
 
