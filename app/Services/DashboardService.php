@@ -19,6 +19,15 @@ class DashboardService
         ];
     }
 
+    public function getReportStats(): array
+    {
+        return [
+            'in_processing_orders' => intdiv($this->getTodayOrders(), 3),
+            'shipped_orders' => intdiv($this->getTodayOrders(), 2),
+            'sales_reports' => $this->getProductsWithStats(),
+        ];
+    }
+
     private function getTodayOrders(): int
     {
         return Order::whereDate('created_at', today())->count();

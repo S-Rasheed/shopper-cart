@@ -12,4 +12,11 @@ class DashboardController extends Controller
 
         return view('dashboard', compact('stats'));
     }
+
+    public function reports(DashboardService $dashboardService)
+    {
+        $stats = $dashboardService->getReportStats();
+
+        return view('reports', compact('stats'));
+    }
 }

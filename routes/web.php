@@ -14,6 +14,10 @@ Route::get('dashboard', [DashboardController::class, 'dashboard'])
 ->middleware(['auth', 'verified'])
 ->name('dashboard');
 
+Route::get('reports', [DashboardController::class, 'reports'])
+->middleware(['auth', 'verified'])
+->name('reports');
+
 Route::get('my-cart', [CartController::class, 'index'])
 ->middleware(['auth', 'verified'])
 ->name('my-cart');
